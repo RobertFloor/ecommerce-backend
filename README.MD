@@ -4,7 +4,7 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password123*" \             
    mcr.microsoft.com/mssql/server:2022-latest
 docker exec -it sql1 "bash"
 mssql@sql1:/$ /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Password123*'
-
+docker start sql1
 ```
 
 ```sql
