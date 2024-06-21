@@ -24,7 +24,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity registerUser(@Valid @RequestBody RegistrationBody registrationBody) {
+    public ResponseEntity<HttpStatus> registerUser(@Valid @RequestBody RegistrationBody registrationBody) {
         System.out.println("Received registration data: " + registrationBody.getLastName());
         System.out.println("Received registration data: " + registrationBody.getFirstName());
         try {
