@@ -4,10 +4,13 @@ import com.youtubetutorial.ecommerce_backend.api.model.LoginBody;
 import com.youtubetutorial.ecommerce_backend.api.model.LoginResponse;
 import com.youtubetutorial.ecommerce_backend.api.model.RegistrationBody;
 import com.youtubetutorial.ecommerce_backend.exception.UserAlreadyExistsException;
+import com.youtubetutorial.ecommerce_backend.model.LocalUser;
 import com.youtubetutorial.ecommerce_backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,5 +49,10 @@ public class AuthenticationController {
             response.setJwt(jwt);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }
+    }
+
+    @GetMapping("/me")
+    public LocalUser getLoggedInUserProfile(@AuthenticationPrincipal LocalUser user) {
+        return user;
     }
 }
